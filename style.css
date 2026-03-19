@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #222;
+  color: #feeacd;
+  line-height: 1.5;
+  font-size: 27px;
+}
+body h2 {
+  font-size: 45px;
+}
+.burger-bar {
+  display: none;
+}
+.navbar {
+  padding: 32px 48px;
+  display: block;
+  text-align: center;
+}
+.navbar a {
+  text-decoration: none;
+  padding: 10px;
+  color: #feeacd;
+}
+.navbar a:hover {
+  border-bottom: 2px solid #feeacd;
+}
+.content_center {
+  background: url(img/h6.jpg);
+  background-position: right bottom left top;
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  width: 100%;
+  height: 940px;
+  padding: 320px 32px;
+  text-align: center;
+  font-size: 45px;
+}
+button {
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: black;
+  background-color: #ff9500;
+  padding: 18px 27px;
+  border-radius: 50px;
+  border: 1px solid #ff9500;
+}
+button a {
+  text-decoration: none;
+  padding: 10px;
+  color: #feeacd;
+}
+button:hover {
+  background-color: #a96910;
+}
+.section_one {
+  padding: 120px 48px;
+  display: flex;
+}
+.section_one img {
+  height: 400px;
+  width: 600px;
+  border-radius: 10px;
+}
+.text-section1 {
+  margin: 50px;
+}
+.section_two {
+  padding: 120px 48px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.section_two img {
+  height: 400px;
+  width: 600px;
+  border-radius: 10px;
+}
+.text-section2 {
+  margin: 50px;
+}
+.section_three {
+  background-image: url(img/hinh8.jpg);
+  background-position: center;
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  width: 100%;
+  height: 288px;
+  padding: 96px 48px;
+  text-align: center;
+}
+footer {
+  padding: 48px 24px;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.box {
+  float: left;
+  width: 50%;
+  padding: 50px;
+}
+.textFooter {
+  margin-right: 0;
+}
+.textFooter img {
+  width: 40px;
+}
+.navbot {
+  justify-items: end;
+}
+.navbot a {
+  display: block;
+  text-decoration: none;
+  padding: 10px;
+  color: #feeacd;
+}
+.navbot a:hover {
+  border-bottom: 2px solid #feeacd;
+}
+.text a {
+  text-decoration: none;
+  color: #feeacd;
+}
+.maincontent h2 {
+  padding: 120px;
+}
+.maincontent img {
+  width: 100%;
+  height: 565px;
+}
+.m_content {
+  text-align: center;
+  padding: 96px 48px;
+}
+.contact {
+  text-align: center;
+  padding: 120px;
+}
+.imga img {
+  width: 100%;
+  height: 300px;
+  background-size: contain;
+}
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
