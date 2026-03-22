@@ -60,24 +60,121 @@ Image được xây dựng từ Dockerfile thông qua lệnh docker build. Một
 
 Docker Image có thể được lưu trữ cục bộ hoặc đẩy lên các kho lưu trữ để sử dụng lại trong các môi trường khác nhau.
 
+> Gói phần mềm đã đóng băng (món ăn đã nấu xong nhưng được cấp đông). Nó chứa code, thư viện và cấu hình.
+
 #### 2.2.4	Docker Container
 
 Docker Container là một phiên bản đang chạy của Docker Image. Container là môi trường độc lập và nhẹ, trong đó ứng dụng được thực thi cùng với các thành phần phụ thuộc (dependencies) của nó.
 
 Các container có thể được tạo, khởi động, dừng hoặc xóa một cách nhanh chóng. Nhờ cơ chế container hóa, các ứng dụng có thể chạy ổn định trên nhiều hệ thống khác nhau mà không bị ảnh hưởng bởi sự khác biệt của môi trường.
 
+> Thực thể đang chạy (món ăn đã được hâm nóng và sẵn sàng phục vụ). Từ một Image, bạn có thể tạo ra nhiều Container chạy cùng lúc.
+
 #### 2.2.5	Docker Registry (Docker Hub)
 Docker Registry là hệ thống dùng để lưu trữ và phân phối các Docker Image. Docker Hub – dịch vụ lưu trữ image trên nền tảng đám mây do Docker cung cấp cho phép người dùng tìm kiếm, tải xuống và chia sẻ các image phục vụ cho nhiều mục đích như phát triển, kiểm thử và triển khai ứng dụng.
 ### 2.3	Các khái niệm quan trọng
+
 #### 2.3.1	Dockerfile
-Dockerfile là một file văn bản chứa các lệnh để xây dựng Docker Image. Mỗi dòng trong Dockerfile là một chỉ thị (instruction) giúp định nghĩa cách tạo image.
+
+Dockerfile là một file văn bản (không có đuôi file) chứa các lệnh để xây dựng Docker Image. Mỗi dòng trong Dockerfile là một chỉ thị (instruction) giúp định nghĩa cách tạo image
+
 Dockerfile giúp tự động hóa quá trình tạo image và đảm bảo tính nhất quán.
+> Bản hướng dẫn (Công thức nấu ăn). Nó ghi lại các bước tạo ra ứng dụng
+
 #### 2.3.2	Volume
 Volume được sử dụng để lưu trữ dữ liệu bên ngoài container, giúp dữ liệu không bị mất khi container bị xóa. Đồng thời, cho phép chia sẻ dữ liệu giữa các container và máy chủ (host).
+
 Volume thường được sử dụng trong các ứng dụng có cơ sở dữ liệu như MySQL hoặc PostgreSQL.
+
 #### 2.3.3	Port Mapping
+
 Port Mapping là cơ chế ánh xạ cổng giữa container và máy chủ (host), cho phép người dùng truy cập ứng dụng đang chạy trong container. Nhờ port mapping, người dùng có thể truy cập ứng dụng thông qua trình duyệt.
 
+## 3. Cài đặt và sử dụng Docker
+
+### 3.1 Cài đặt
+> Link: https://tuyendung.evotek.vn/roadmap-docker-huong-dan-cai-dat-docker-tren-windows-mac-va-linux/
+
+### 3.2 Các lệnh Docker cơ bản
+
+#### 3.2.1	Docker pull
+
+Hầu hết các image sẽ được tạo dựa trên các image cơ sở từ Docker Hub. Docker Hub chứa rất nhiều các image được dựng sẵn, mà ta có thể pull về và dùng mà không cần phải định nghĩa và cấu hình lại từ đầu. Để tải một image cụ thể hoặc một tập hợp image ta dùng docker pull. Nếu không chỉ định phiên bản (tag), Docker mặc định sẽ tải bản mới nhất.
+
+```
+docker pull nginx
+docker pull mysql
+```
+Khi chạy `docker pull nginx`, Docker sẽ kết nối đến Docker Hub (giống như App Store của Docker) và tìm kiếm bản ghi có tên nginx và tải toàn bộ các "layer" (lớp dữ liệu) của nó về máy.
+
+#### 3.2.2 Docker build
+
+Lệnh này dùng để build một image từ Dockerfile và context. Context ở đây là một tập file được xác đinh bởi đường dẫn hoặc url cụ thể. Ta có thể sử dụng thêm tham số -t để gắn nhãn cho image.
+
+```
+docker build -t your_name_container
+```
+Giải thích tham số:
+- `-t ` (tag): Dùng để đặt tên cho dễ nhớ. Nếu không có -t, Image của bạn sẽ chỉ có một dãy ID loằng ngoằng (ví dụ: 7d4df...).
+- Dấu chấm `.` ở cuối: Rất quan trọng, nó chỉ định Build Context là tại thư mục hiện tại. Docker sẽ tìm file có tên Dockerfile tại đây để làm việc.
+> Lệnh chế biến từ file hướng dẫn (Dockerfile) thành thành phẩm (image)
+#### 3.2.3 Docker run
+
+Lệnh này dùng để **chạy một container** dựa trên một image mà ta có sẵn. Ta có thể thêm vào sau lệnh này một vài câu lệnh khác như -it bash để chạy bash từ container này.
+
+```
+docker run image_name -it bash
+```
+Giải thích câu lệnh:
+- `-i` (interactive): Giữ đầu vào tiêu chuẩn mở (để bạn gõ lệnh được).
+
+- `-t` (tty): Cấp một cửa sổ dòng lệnh ảo.
+
+- `bash`: Yêu cầu container mở chương trình Bash shell ngay khi vừa khởi động để bạn điều khiển bên trong nó.
+
+**Lệnh phổ biến khác:** `docker run -d -p 8080:80 nginx`
+
+-d (detached): Chạy ngầm (không chiếm dụng màn hình terminal).
+
+-p (publish): Ánh xạ cổng. Cổng bên trái là máy thật, bên phải là trong container.
+
+#### 3.2.4 Docker ps
+
+Lệnh docker ps  dùng để hiển thị tất cả các containers đang chạy. Thêm –a để liệt kê tất cả containers (bao gồm cả những container đã stop).
+
+<img width="945" height="116" alt="image" src="https://github.com/user-attachments/assets/2cee08c6-f2fa-4e6c-97e6-133b13d1f63a" />
+
+docker ps: Chỉ hiện những container đang "sống" (Up).
+
+docker ps -a: Hiện tất cả, kể cả những container đã "chết" (Exited). Điều này rất quan trọng khi bạn chạy lỗi, container tự tắt, bạn phải dùng -a mới thấy ID của nó để kiểm tra log lỗi.
+
+> Giống như Task Manager trên Windows
+
+#### 3.2.5 Docker stop 
+
+Lệnh docker stop dùng để đừng một container đang chạy.
+
+```
+docker stop [ID_hoặc_Tên_Container]
+```
+Docker sẽ gửi một tín hiệu (SIGTERM) để yêu cầu ứng dụng bên trong container lưu lại dữ liệu và đóng lại một cách an toàn trước khi ngắt kết nối hoàn toàn.
+
+## 4. Ví dụ minh họa
+
+### 4.1 Luồng triển khai 
+
+Quy trình thực thế:
+- Code app (HTML, NodeJS ....)
+- Tạo Dockerfile
+- Build image
+- Push lên Docker Hub
+- SSH vào server
+- Pull image
+- Run container
+
+### 4.2 Containerization
+
+Thực hiện quy trình Dockerize một trang web tĩnh
 
 
 
