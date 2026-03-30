@@ -92,6 +92,8 @@ Port Mapping là cơ chế ánh xạ cổng giữa container và máy chủ (hos
 
 ## 3. Cài đặt và sử dụng Docker
 
+> Link: https://docs.docker.com/desktop/setup/install/windows-install/
+
 ### 3.1 Cài đặt
 > Link: https://tuyendung.evotek.vn/roadmap-docker-huong-dan-cai-dat-docker-tren-windows-mac-va-linux/
 
